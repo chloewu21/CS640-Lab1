@@ -40,10 +40,27 @@ public class Iperfer {
         
     }
 
+    /**
+     * Establish TCP connection with server and send data as quickly as possible for time seconds. 
+     * Data should be sent in chunks of 1000 bytes and should be all 0s. Keep a running total of 
+     * the number of bytes sent. After time seconds, stop sending data and close the connection.
+     * Print a one line summary with total number of bytes send (kilobytes) and the rate at which 
+     * traffic could be sent (Mbps).
+     * @param host Server host name
+     * @param port Server port
+     * @param time Duration in seconds for which data should be generated
+     */
     private static void clientMode(String host, int port, int time) {
 
     }
 
+    /**
+     * Listen for TCP connections from a client and receive data until client closes the connection.
+     * Read data in 1000 byte chunks. Keep a running total of the number of bytes received.
+     * After the client closes the connection, print a one line summary with total number of bytes
+     * received (kilobytes) and the rate at which traffic was received (Mbps).
+     * @param port Port to listen on
+     */
     private static void serverMode(int port) {
 
     }
