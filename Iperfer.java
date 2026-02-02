@@ -66,7 +66,7 @@ public class Iperfer {
                 out.write(buffer);
                 total += 1000;
             }
-            System.out.println("sent=" + total / 1000 + " KB rate=" + (total * 8.0) / 1_000_000.0 + " Mbps");
+            System.out.println("sent=" + total / 1000 + " KB rate=" + ((total * 8.0) / 1_000_000.0) / time + " Mbps");
             out.close();
             socket.close();            
         } catch (Exception e) {
@@ -90,13 +90,17 @@ public class Iperfer {
             byte[] buffer = new byte[1000]; // buffer to read 1000-byte chunks
             long total = 0; // total number of bytes received
             int read;
-            long start = System.nanoTime();
+            long start = -1;
+            long end = -1;
             while ((read = in.read(buffer)) != -1) {
+                if (start == -1) {
+                    start = System.nanoTime(); // start when first byte is read
+                }
                 total += read;
+                end = System.nanoTime();
             }
-            long end = System.nanoTime();
             double rate = ((total * 8.0) / 1_000_000.0) / ((end - start) / 1_000_000_000.0); // rate in Mbps
-            System.out.println("received=" + total / 1000 + " KB rate=" + rate);
+            System.out.println("received=" + total / 1000 + " KB rate=" + rate + " Mbps");
             in.close();
             client.close();
             serverSocket.close();
