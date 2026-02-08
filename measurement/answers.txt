@@ -1,0 +1,47 @@
+Q2: 
+We predict the latency of the path from h1 to h4 to be the sum of the latencies of links L1, L2, and L3. 
+After adding the average latencies we calculated in Q1, the sum is 161.937 ms. 
+We predict the throughput to be the mininum of the three links. L1 has the smallest throughput of 23.202 Mbps.
+
+The actual latency was 161.239 ms, which is very close to our prediction. That means we were correct in assuming
+that the latency is the sum of all links along a path.
+The actual throughput was 23.960 Mbps, which is also very close to our predicted throughput. This also makes sense
+as the throughput of the path depends on the slowest link on the path.
+
+Q3:
+If there are 2 pairs of hosts, we predict the latency to increase by a little due to queueing of packets. 
+Latency would probably increase further with 3 pairs of hosts. We estimate it would increase by a couple ms at most.
+With 2 pairs of hosts, we predict the throughput to be cut in half because both pairs are sharing the same links. 
+This put the expected throughput at 11.98 Mbps. With 3 pairs of hosts, we predict the throughput to be 
+divided by 3, which is 7.99 Mbps.
+
+2 pairs of hosts:
+h1 and h4: latency - 161.158 ms, throughput - 17.165 Mbps
+h7 and h9: latency - 161.152 ms, throughput - 8.552 Mbps
+
+3 pairs of hosts:
+h1 and h4: latency - 161. 186 ms, throughput - 15.789 Mbps
+h7 and h9: latency - 161.185 ms, throughput - 4.8 Mbps
+h8 and h10: latency - 161.536 ms, throughput - 4.088 Mbps
+
+The latencies for both 2 pairs and 3 pairs of hosts were about the same. It only increased by about 0.03 ms for 
+a couple of the pairs. Our prediction was wrong because we overestimated how much the latency would be affected
+by increasing the numbers of pairs of hosts. The throughputs for 2 pairs of hosts on average was about half of 
+the throughput with only 1 pair, which is close to our prediction. The throughputs for 3 pairs on average
+was also about a third of the throughput with only 1 pair. However, we noticed the first pair, h1 and h4, 
+have a higher throughput than the rest. This could be because of the order we started them in. 
+
+Q4:
+If h1 is communicating with h4 while h5 is communicating with h6, we expect the latency to not be affected as
+they are only sharing one link, L2. The latency would still be the sum of the latencies of the links used for 
+both pairs. For h1 and h4, that is about 161.937 ms, and for h5 and h6, that is 41.497 ms. We expect the 
+throughput for h1 and h4 to be L2's throughput divided by 2, which is 21.2 Mbps. This is because L2 is also 
+shared by h5 and h6. We expect h5 and h6 to have the same throughput as h1 and h4 because L2's throughput / 2 
+is the minimum among the 3 links of L4, L2, and L5. 
+
+h1 and h4: latency - 161.549 ms, throughput - 17.574 Mbps
+h5 and h6: latency - 40.980 ms, throughput - 26.370 Mbps
+
+Our predictions for latency are correct as the values are very close to the sum of the latencies of the links
+along those paths. The throughput for h1 and h4 is a bit less than that of h5 and h6. This could be caused by 
+more queueing delays along that path compared to from h5 to h6. 
