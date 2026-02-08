@@ -4,8 +4,16 @@ import java.net.*;
 
 public class Iperfer {
     public static void main(String[] args) throws IOException{
+        if (args.length == 0) {
+            System.out.println("Error: missing arguments");
+            System.exit(1);
+        }
         // Client mode
-        if (args.length == 7 && args[0].equals("-c") && args[1].equals("-h") && args[3].equals("-p") && args[5].equals("-t")) {
+        if (args[0].equals("-c")) {
+            if (args.length != 7 || !args[1].equals("-h") || !args[3].equals("-p") || !args[5].equals("-t")) {
+                System.out.println("Error: missing or additional arguments");
+                System.exit(1);
+            }
             String host = args[2];
             int port = 0;
             int time = 0;
@@ -22,7 +30,12 @@ public class Iperfer {
             }
             clientMode(host, port, time);
         }
-        else if (args.length == 3 && args[0].equals("-s") && args[1].equals("-p")) {
+        // Server mode
+        else if (args[0].equals("-s")) {
+            if (args.length != 3 || !args[1].equals("-p")) {
+                System.out.println("Error: missing or additional arguments");
+                System.exit(1);
+            }
             int port = 0;
             try {
                 port = Integer.parseInt(args[2]);
